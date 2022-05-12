@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <div style="height: 3vh;"></div>
+            <div>
+                <a style="float: right;" (click)="logout()">Logout</a>
+                <h2>Member Home Page</h2>
+                <div style="height: 3vh;"></div>
+                <p style="color: red;">{{errorMessage}}</p>
+                <div style="height: 1vh;"></div>
+            </div>
+            <div>
+                <form #postForm="ngForm" [formGroup]="persionerForm" (ngSubmit)="onSubmit(postForm.value)">
+                    <div class="form-group">
+                        <label for="username">Enter Pensioner's Aadhar Number</label>
+                        <input type="number" id="aadharNumber" formControlName="aadharNumber" class="form-control">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Find Pensioner</button>
+                </form>
+                <hr>
+                <div class="pensionDetails" *ngIf="isDataValid">
+                    <p>Name : {{pensionerName}}</p>
+                    <p>Aadhar Number : {{aadharNumber}}</p>
+                    <p>Pan number : {{panNumber}}</p>
+                    <p>Date of Birth : {{DOB}}</p>
+                    <p>Last Earned Salery : {{lastSalery}}</p>
+                    <p>Pension Receiver : {{selfOrFamily}}</p>
+                    
+                    <p>Bank Name : {{bankName}}</p>
+                    <p>Aadhar Number : {{bankAccountNumber}}</p>
+                    <p>Pan number : {{bankSector}}</p>                    
+                    <button class="btn btn-primary" type="button" (click)="calculateResults()">Calculate Pension</button>
+                    <div style="height: 3vh;"></div>
+                    <div *ngIf="isPensionCalculated">
+                        <p>Pension Amount : {{pensionAmount}}</p>
+                        <p>Bank Charges : {{bankCharge}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
